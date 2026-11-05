@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Komdat Belajar – LMS Komunikasi Data</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;1,800;1,900&display=swap">
+<style>
+:root{--bg:#f6f4ef;--card:#fff;--ink:#23282d;--mut:#6b7480;--pri:#2f7f6f;--pri2:#e3f1ed;--ok:#2e8b57;--okb:#e2f4e8;--bad:#c0463d;--badb:#fbe6e4;--line:#e5e1d8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171a1c;--card:#21262a;--ink:#e8ebed;--mut:#9aa4ad;--pri:#5cc2ad;--pri2:#23403b;--ok:#6fd29a;--okb:#1f3a2b;--bad:#ef8b83;--badb:#42262a;--line:#333a40;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#171a1c;--card:#21262a;--ink:#e8ebed;--mut:#9aa4ad;--pri:#5cc2ad;--pri2:#23403b;--ok:#6fd29a;--okb:#1f3a2b;--bad:#ef8b83;--badb:#42262a;--line:#333a40;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:70px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{background:var(--pri);color:#fff;padding:22px 18px 18px}
+:root[data-theme="dark"] header,:root:not([data-theme="light"]) header{}
+header h1{margin:0;font-size:1.45rem}header p{margin:4px 0 12px;opacity:.9;font-size:.92rem}
+.bar{height:8px;background:rgba(255,255,255,.3);border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:#fff;width:0;transition:width .4s}
+.pl{font-size:.8rem;margin-top:5px;opacity:.95}
+nav{position:sticky;top:0;z-index:5;background:var(--bg);display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--line);overflow-x:auto}
+nav button{flex:1;min-width:max-content;border:0;background:var(--card);color:var(--ink);padding:10px 16px;border-radius:99px;font:inherit;font-size:.92rem;cursor:pointer;border:1px solid var(--line)}
+nav button.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+main{max-width:780px;margin:0 auto;padding:16px 14px 60px}
+.sec{display:none}.sec.on{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden}
+.th{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;width:100%;background:none;border:0;color:inherit;font:inherit;text-align:left}
+.th .n{flex:none;width:34px;height:34px;border-radius:50%;background:var(--pri2);color:var(--pri);display:grid;place-items:center;font-weight:700}
+.th b{flex:1}.th .ck{color:var(--ok);font-size:1.1rem}
+.tb{display:none;padding:0 16px 16px;border-top:1px solid var(--line)}.card.open .tb{display:block}
+.tb h4{margin:16px 0 4px;color:var(--pri)}.tb p,.tb ul{margin:6px 0}.tb ul{padding-left:20px}
+.box{background:var(--pri2);border-radius:12px;padding:10px 14px;margin:10px 0;font-size:.95rem}
+table{width:100%;border-collapse:collapse;font-size:.88rem;margin:8px 0}th,td{border:1px solid var(--line);padding:7px 8px;text-align:left;vertical-align:top}th{background:var(--pri2)}
+.sc{overflow-x:auto}
+.btn{background:var(--pri);color:#fff;border:0;border-radius:12px;padding:11px 18px;font:inherit;cursor:pointer}
+.btn.g{background:var(--pri2);color:var(--pri)}
+.done{margin-top:12px}
+.q{padding:16px}.q h3{margin:0 0 4px;font-size:1rem}.meta{color:var(--mut);font-size:.82rem;margin-bottom:10px}
+.o{display:block;width:100%;text-align:left;background:var(--bg);border:1.5px solid var(--line);border-radius:12px;padding:11px 14px;margin:8px 0;font:inherit;color:inherit;cursor:pointer}
+.o.ok{background:var(--okb);border-color:var(--ok)}.o.bad{background:var(--badb);border-color:var(--bad)}
+.ex{margin-top:10px;font-size:.92rem;background:var(--pri2);border-radius:10px;padding:10px 12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+input,select,textarea{width:100%;padding:11px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font:inherit}
+label{font-size:.88rem;color:var(--mut);display:block;margin:10px 0 4px}
+.res{font-size:1.15rem;font-weight:700;color:var(--pri);margin-top:12px}
+.big{text-align:center;padding:24px}.big .s{font-size:3rem;font-weight:800;color:var(--pri)}
+h2{margin:6px 2px 12px;font-size:1.15rem}
+.chk{display:flex;gap:8px;align-items:flex-start;margin:8px 0;font-size:.93rem}.chk input{width:auto;margin-top:5px}
+body{--bg:#e9e4d3;--card:#f4f0e2;--ink:#1c1b1f;--mut:#5d5a66;--pri:#ff1f6b;--pri2:#e4dcf5;--ok:#1f7a4d;--okb:#d5f0dc;--bad:#d11a4a;--badb:#ffd9e2;--line:#1c1b1f;--pur:#5b3a9e;color-scheme:light;background-color:var(--bg);background-image:radial-gradient(rgba(28,27,31,.09) 1.2px,transparent 1.3px);background-size:18px 18px}
+h1,h2,h3,.th b,.btn,nav button,.tb h4,.big .s,.res{font-family:"Arial Black",Impact,system-ui,sans-serif;font-style:italic;text-transform:uppercase;letter-spacing:-.01em}
+header{background:#1c1b1f;padding:14px 14px 18px}
+.url{display:flex;align-items:center;gap:10px;background:#2c2b31;border-radius:99px;padding:8px 14px;color:#b9b7c2;font:700 .85rem/1 system-ui;letter-spacing:.08em;margin-bottom:14px}.url i{width:22px;height:22px;border-radius:50%;background:#3b3a42;flex:none}
+.chip{display:inline-flex;align-items:center;gap:6px;background:#2c2b31;color:#fff;border-radius:99px;padding:6px 12px;font-size:.75rem;font-weight:700;margin-bottom:8px}
+.banner{background:#ff1f6b;border:3px solid #fff;outline:3px solid #1c1b1f;padding:14px 12px;margin-bottom:12px;overflow:hidden}
+.banner h1{margin:0;font-size:clamp(1.7rem,8vw,2.6rem);line-height:1;color:#f4f0e2;transform:skewX(-6deg)}
+.banner p{margin:6px 0 0;color:#fff;font-size:.82rem;font-weight:700}
+.bar{background:#3b3a42;border-radius:0;height:12px;border:2px solid #f4f0e2}.bar i{background:#ff1f6b}
+.pl{color:#f4f0e2;font-weight:700;letter-spacing:.03em}
+nav{background:#e9e4d3;border-bottom:3px solid #1c1b1f;padding:10px 12px}
+nav button{background:transparent;border:2px solid transparent;font-size:.82rem;color:#1c1b1f}
+nav button.on{background:#1c1b1f;color:#ff1f6b;border-color:#1c1b1f}
+h2{font-size:1.5rem;color:#1c1b1f;display:inline-block;background:#f4f0e2;border:3px solid #1c1b1f;padding:4px 12px;box-shadow:5px 5px 0 #ff1f6b;margin:8px 0 18px}
+.card{border:3px solid var(--pur);border-radius:10px;background:var(--card);box-shadow:6px 6px 0 #1c1b1f}
+.card::before{content:"▤  KOMDAT.EXE";display:block;background:var(--pur);color:#fff;font:700 .7rem/1 system-ui;letter-spacing:.14em;padding:6px 10px}
+.th .n{border-radius:6px;background:var(--pur);color:#fff;font-style:italic}
+.th b{font-size:.95rem}.th .ck{color:#ff1f6b;font-size:1.3rem}
+.tb{border-top:2px dashed var(--pur)}
+.tb h4{display:inline-block;background:var(--pur);color:#fff;padding:3px 10px;margin:16px 0 6px;font-size:.78rem}
+.box{background:#1c1b1f;color:#d9d6e0;border-radius:12px;border:0}.box b{color:#ff4d8d}
+th{background:var(--pur);color:#fff}table,th,td{border-color:var(--pur)}
+.btn{background:#ff1f6b;color:#fff;border:2px solid #1c1b1f;border-radius:10px;box-shadow:3px 3px 0 #1c1b1f;font-size:.85rem}.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 #1c1b1f}
+.btn.g{background:var(--pur);color:#fff}
+.o{background:#fff;border:2px solid #1c1b1f;border-radius:10px;box-shadow:3px 3px 0 var(--pur);font-weight:600}
+.o.ok{background:#bfeccf;border-color:#1f7a4d}.o.bad{background:#ffc2d1;border-color:#d11a4a}
+.ex{background:#fff;border:2px dashed var(--pur);color:#1c1b1f}
+input,select,textarea{background:#fff;border:2px solid #1c1b1f;border-radius:10px}
+.res{color:#ff1f6b;font-size:1.4rem}
+.big .s{font-size:4rem;color:#ff1f6b}
+.meta{font-weight:700;color:var(--pur);letter-spacing:.04em;text-transform:uppercase;font-size:.75rem}
+footer{background:#1c1b1f;color:#b9b7c2;text-align:center;padding:18px 14px calc(18px + env(safe-area-inset-bottom,0px));font:700 .75rem system-ui;letter-spacing:.14em}
+footer b{color:#ff1f6b}
+body{font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif}
+h1,h2,h3,.th b,.btn,nav button,.tb h4,.big .s,.res{font-family:"Archivo","Arial Black",Impact,sans-serif;font-weight:900;font-style:italic;text-transform:uppercase;letter-spacing:-.02em}
+.url,.chip,.card::before,footer,.meta{font-family:"Archivo",system-ui,sans-serif}
+.ic{width:1.15em;height:1.15em;flex:none;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.2em}
+nav button,.btn,.chip{display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.th .ck{display:grid;place-items:center}.th .ck .ic{width:1.3em;height:1.3em;animation:pop .4s cubic-bezier(.3,1.6,.5,1)}
+.card::before{content:"KOMDAT.EXE";background:var(--pur) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='12'%3E%3Crect x='1' y='1' width='10' height='10' fill='none' stroke='white' stroke-width='2'/%3E%3Crect x='20' y='1' width='19' height='10' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 10px center}
+.th::after{content:"";width:18px;height:18px;flex:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235b3a9e' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 9l7 7 7-7'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.card.open .th::after{transform:rotate(180deg)}
+.tb{display:block!important;max-height:0;overflow:hidden;padding-top:0;padding-bottom:0;border-top-color:transparent;opacity:0;transition:max-height .5s cubic-bezier(.2,.8,.2,1),opacity .35s,padding .35s,border-color .35s}
+.card.open .tb{max-height:3000px;opacity:1;padding-bottom:16px;border-top-color:var(--pur)}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.6)}100%{opacity:1;transform:scale(1)}}
+@keyframes shine{0%,60%{transform:translateX(-120%) skewX(-20deg)}100%{transform:translateX(320%) skewX(-20deg)}}
+@keyframes slide{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+.sec.on{animation:up .5s cubic-bezier(.2,.8,.2,1)}
+.sec.on h2{animation:slide .5s cubic-bezier(.2,.8,.2,1)}
+.banner{position:relative}.banner::after{content:"";position:absolute;top:0;bottom:0;left:0;width:30%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);animation:shine 4.5s ease-in-out infinite;pointer-events:none}
+.banner h1{animation:slide .7s cubic-bezier(.2,.8,.2,1) both}
+.chip{animation:pop .5s .1s both cubic-bezier(.3,1.6,.5,1)}
+.bar i{transition:width .8s cubic-bezier(.2,.8,.2,1)}
+nav button,.btn,.o,.card{transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s,background .25s,color .25s,border-color .25s}
+.ex{animation:pop .35s cubic-bezier(.3,1.4,.5,1)}.o.ok,.o.bad{animation:pop .3s cubic-bezier(.3,1.5,.5,1)}
+.big{animation:pop .5s cubic-bezier(.3,1.5,.5,1)}
+@media (hover:hover){.o:hover:not(.ok):not(.bad){transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--pur)}.btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 #1c1b1f}.card:hover{transform:translateY(-2px)}nav button:not(.on):hover{background:rgba(28,27,31,.08)}}
+.o:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--pur)}
+header{position:relative}
+.banner{background:#ff1f6b radial-gradient(rgba(0,0,0,.2) 1.5px,transparent 1.7px) 0 0/9px 9px}
+.banner h1{text-shadow:3px 3px 0 #1c1b1f}
+h2{transform:rotate(-1.5deg);transform-origin:left}
+.o{position:relative}
+.o.ok::after,.o.bad::after{position:absolute;right:10px;top:-11px;font:900 italic .72rem Archivo,sans-serif;padding:3px 9px;border:2px solid #1c1b1f;box-shadow:2px 2px 0 #1c1b1f;transform:rotate(6deg)}
+.o.ok::after{content:"BENAR!";background:#ffd400;color:#1c1b1f}
+.o.bad::after{content:"OOPS!";background:#ff1f6b;color:#fff}
+.o.bad{animation:shake .45s}
+@keyframes shake{20%{transform:translateX(-7px) rotate(-1deg)}40%{transform:translateX(7px) rotate(1deg)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+.stk{position:absolute;top:50px;right:8px;width:78px;height:78px;z-index:3;display:grid;place-items:center;transform:rotate(12deg);animation:wob 2.4s ease-in-out infinite;pointer-events:none}
+.stk svg{position:absolute;inset:0;width:100%;height:100%}.stk b{position:relative;font:900 italic .95rem Archivo,sans-serif;color:#1c1b1f;transform:rotate(-8deg)}
+@keyframes wob{0%,100%{transform:rotate(12deg) scale(1)}50%{transform:rotate(4deg) scale(1.12)}}
+.fx{position:fixed;z-index:90;pointer-events:none;font:900 italic 1.5rem Archivo,sans-serif;color:#ffd400;-webkit-text-stroke:2px #1c1b1f;text-shadow:3px 3px 0 #1c1b1f;animation:fx .75s ease-out forwards}
+@keyframes fx{0%{transform:translate(-50%,-50%) scale(.3) rotate(var(--r));opacity:1}30%{transform:translate(-50%,-90%) scale(1.35) rotate(var(--r))}100%{transform:translate(-50%,-220%) scale(1) rotate(var(--r));opacity:0}}
+#splash{position:fixed;inset:0;z-index:100;background:#ff1f6b;display:grid;place-items:center;overflow:hidden;clip-path:circle(150% at 50% 50%);transition:clip-path .85s cubic-bezier(.7,0,.3,1);color:#1c1b1f;cursor:pointer}
+#splash.bye{clip-path:circle(0% at 50% 50%);pointer-events:none}
+#splash .rays{position:absolute;inset:-60%;background:repeating-conic-gradient(rgba(255,255,255,.17) 0 6deg,transparent 6deg 12deg);animation:spin 24s linear infinite}
+#splash::after{content:"";position:absolute;inset:0;background:radial-gradient(rgba(0,0,0,.16) 1.6px,transparent 1.8px) 0 0/10px 10px;pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.sp-in{position:relative;z-index:2;width:min(340px,88vw);text-align:center}
+.stage{position:relative;height:210px;display:grid;place-items:center}
+.pc{width:200px;filter:drop-shadow(6px 6px 0 #1c1b1f);transition:transform .45s cubic-bezier(.6,-.5,.5,1.6),opacity .3s;animation:bob 1.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.scr{animation:blink .7s steps(2) infinite}@keyframes blink{50%{opacity:.25}}
+.bit{position:absolute;left:50%;top:44%;font:900 1.2rem Archivo,sans-serif;color:#f4f0e2;text-shadow:2px 2px 0 #1c1b1f;opacity:0;animation:fly 1.7s cubic-bezier(.5,0,.8,.4) infinite;transition:opacity .2s}
+@keyframes fly{0%{transform:translate(var(--x),var(--y)) scale(1.4);opacity:0}15%{opacity:1}100%{transform:translate(0,0) scale(.2);opacity:0}}
+.burst{position:absolute;width:118%;left:-9%;top:-6%;opacity:0;transform:scale(0) rotate(-40deg);transition:transform .55s .15s cubic-bezier(.3,1.7,.5,1),opacity .2s .15s;filter:drop-shadow(6px 6px 0 #1c1b1f)}
+.word{position:absolute;font:900 italic clamp(2rem,11vw,3.6rem) Archivo,Impact,sans-serif;color:#f4f0e2;-webkit-text-stroke:3px #1c1b1f;paint-order:stroke fill;text-shadow:5px 5px 0 #5b3a9e;letter-spacing:-.02em;opacity:0;transform:skewX(-8deg) scale(.2) rotate(-3deg);transition:transform .5s .35s cubic-bezier(.3,1.7,.5,1),opacity .2s .35s;white-space:nowrap}
+.word em{font-style:inherit;color:#ff1f6b}
+.boom .pc{transform:scale(0) rotate(40deg);opacity:0;animation:none}
+.boom .burst{opacity:1;transform:scale(1) rotate(0)}
+.boom .word{opacity:1;transform:skewX(-8deg) scale(1) rotate(-3deg)}
+.boom .stage{animation:shake .5s .1s}.boom .bit{opacity:0!important}
+.lbl{display:flex;justify-content:space-between;font:900 italic .95rem Archivo,sans-serif;text-transform:uppercase;margin:14px 2px 8px;color:#f4f0e2;text-shadow:2px 2px 0 #1c1b1f}
+.ld{height:26px;border:4px solid #1c1b1f;background:#f4f0e2;box-shadow:6px 6px 0 #1c1b1f;transform:skewX(-10deg);overflow:hidden}
+.ld i{display:block;height:100%;width:0;background:repeating-linear-gradient(-45deg,#5b3a9e 0 10px,#7a58c4 10px 20px);background-size:28px 28px;animation:stripe .5s linear infinite}
+@keyframes stripe{to{background-position:28px 0}}
+.burst{display:none}
+.word{display:flex;opacity:1!important;transform:skewX(-8deg)!important;transition:none!important;font-size:clamp(1.9rem,10.5vw,3.3rem);-webkit-text-stroke:3px #1c1b1f;text-shadow:5px 5px 0 #1c1b1f;letter-spacing:0}
+.word span{display:inline-block;min-width:.55em;text-align:center;opacity:0;transform:translateY(-30px) scale(1.5);color:#f4f0e2}
+.word .c2{color:#1c1b1f;-webkit-text-stroke:3px #f4f0e2;text-shadow:5px 5px 0 #5b3a9e}
+.word span.on{opacity:1;transform:none;animation:lpop .3s cubic-bezier(.3,1.7,.5,1)}
+.word span.lk{animation:lk .4s cubic-bezier(.3,1.8,.5,1)}
+@keyframes lpop{from{opacity:0;transform:translateY(-30px) scale(1.5)}to{opacity:1;transform:none}}
+@keyframes lk{0%{transform:scale(1.35) rotate(-6deg)}100%{transform:none}}
+.word::after{content:"";position:absolute;left:2%;right:2%;bottom:-14px;height:9px;background:#1c1b1f;box-shadow:4px 4px 0 #5b3a9e;transform:scaleX(0);transform-origin:left;transition:transform .5s 1.6s cubic-bezier(.7,0,.3,1)}
+.boom .word::after{transform:scaleX(1)}
+@media (min-width:800px){
+body{font-size:17px}
+header{display:grid;justify-content:center;grid-template-columns:minmax(0,1100px);padding:22px 28px 30px}
+header .chip{justify-self:start}
+.stk{top:70px;right:calc(50% - 550px + 10px);width:110px;height:110px}.stk b{font-size:1.35rem}
+.url{padding:11px 20px;font-size:.95rem}
+.banner{padding:26px 28px}.banner h1{font-size:4.2rem}.banner p{font-size:1.05rem}
+.bar{height:16px}
+nav{justify-content:center;gap:10px;padding:14px 20px}
+nav button{flex:none;padding:12px 30px;font-size:.95rem}
+main{max-width:1100px;padding:34px 28px 90px}
+h2{font-size:2rem;margin:4px 0 26px}
+#tl,#qz,#ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;align-items:start}
+#tl .card,#qz .card,#ul .card{margin:0}
+#qz #fin{grid-column:1/-1;justify-self:center;min-width:50%}
+#hitung.on{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:start}
+#hitung h2{grid-column:1/-1;justify-self:start}
+#hitung .card{margin:0}
+.q{padding:20px}.q h3{font-size:1.1rem}
+.th{padding:18px 20px}.tb{padding-left:20px;padding-right:20px}
+.card{box-shadow:8px 8px 0 #1c1b1f}
+.sp-in{width:min(500px,60vw)}.stage{height:290px}.pc{width:270px}
+.word{font-size:4.2rem}
+.ld{height:30px}
+footer{font-size:.85rem;padding-top:26px}
+}
+@media (min-width:800px) and (max-width:1000px){#hitung.on{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="splash"><div class="rays"></div><div class="sp-in"><div class="stage"><svg class="pc" viewBox="0 0 200 170"><rect x="20" y="10" width="160" height="110" rx="10" fill="#f4f0e2" stroke="#1c1b1f" stroke-width="6"/><rect x="34" y="24" width="132" height="82" rx="4" fill="#1c1b1f"/><text class="scr" x="100" y="76" fill="#ff1f6b" font-size="30" font-weight="900" text-anchor="middle" font-family="Archivo,monospace">01101_</text><path d="M88 120h24l6 28H82z" fill="#5b3a9e" stroke="#1c1b1f" stroke-width="6" stroke-linejoin="round"/><rect x="58" y="148" width="84" height="14" rx="6" fill="#ff1f6b" stroke="#1c1b1f" stroke-width="6"/></svg><svg class="burst" viewBox="0 0 200 200"><polygon id="bp" fill="#ffd400" stroke="#1c1b1f" stroke-width="5" stroke-linejoin="round"/></svg><div class="word"></div></div><div class="lbl"><span id="lt">Memuat data...</span><b id="sp">0%</b></div><div class="ld"><i id="sl"></i></div></div></div>
+<header>
+<div class="url"><i></i>WWW.GITHUB.COM/ABELFAVIAN21</div>
+<span class="chip">🐰 TIM BELAJAR · SIAP UTS</span>
+<div class="banner"><h1>Komdat Belajar</h1><p>Persiapan UTS Komunikasi Data · Semester 3</p></div>
+<div class="bar"><i id="pb"></i></div><div class="pl" id="pl"></div>
+</header>
+<nav id="nav">
+<button data-t="materi" class="on">📖 Materi</button>
+<button data-t="kuis">✏️ Kuis</button>
+<button data-t="hitung">🧮 Hitung</button>
+<button data-t="uts">📝 Soal UTS</button>
+</nav>
+<main>
+<section class="sec on" id="materi"><h2>8 Topik Kisi-kisi</h2><div id="tl"></div></section>
+<section class="sec" id="kuis"><h2>Kuis Pilihan Ganda</h2><div id="qz"></div></section>
+<section class="sec" id="hitung">
+<h2>Kalkulator Bandwidth</h2>
+<div class="card q">
+<h3>A. Throughput / kecepatan transfer</h3><div class="meta">Rumus: data ÷ waktu</div>
+<label>Total data</label><div class="row"><input id="d" type="number" value="100" style="flex:2"><select id="du" style="flex:1"><option value="1">Mb</option><option value="8">MB</option><option value="1000">Gb</option></select></div>
+<label>Waktu (detik)</label><input id="t" type="number" value="20">
+<div class="res" id="r1"></div></div>
+<div class="card q">
+<h3>B. Bandwidth analog (frekuensi)</h3><div class="meta">Rumus: f tertinggi − f terendah</div>
+<label>f terendah (MHz)</label><input id="f1" type="number" value="30">
+<label>f tertinggi (MHz)</label><input id="f2" type="number" value="300">
+<div class="res" id="r2"></div></div>
+<div class="card q">
+<h3>Latihan acak</h3><div class="meta">Coba hitung sendiri dulu</div>
+<div id="rq"></div><div class="row"><input id="ra" type="number" step="any" placeholder="Jawabanmu (Mbps)"><button class="btn" id="rc">Cek</button><button class="btn g" id="rn">Soal baru</button></div><div id="rf"></div></div>
+</section>
+<section class="sec" id="uts"><h2>Latihan Soal UTS Tahun Lalu</h2><p style="color:var(--mut);margin-top:-6px;font-size:.9rem">Tulis jawabanmu dulu, lalu buka jawaban model untuk membandingkan.</p><div id="ul"></div></section>
+</main>
+<footer>Z.Z.Z · <b>KOMDAT</b> · BELAJAR SAMBIL SANTAI</footer>
+<script>
+const $=s=>document.querySelector(s);
+const IC=d=>`<svg class='ic' viewBox='0 0 24 24'>${d}</svg>`;
+const OK=IC("<path d='M5 12.5l4.5 4.5L19 7'/>"),NO=IC("<path d='M6 6l12 12M18 6L6 18'/>");
+let P={};try{P=JSON.parse(localStorage.getItem("komdat")||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem("komdat",JSON.stringify(P))}catch(e){}};
+P.m=P.m||{};P.q=P.q||{};
+
+const T=[
+{t:"Media Komunikasi (Transmisi)",h:`
+<p>Media transmisi adalah jalur fisik atau non-fisik yang membawa sinyal data dari pengirim ke penerima. Aplikasi web, mobile, dan IoT bergantung pada media ini.</p>
+<h4>1. Guided (berkabel)</h4>
+<div class="sc"><table><tr><th>Media</th><th>Ciri</th><th>Fungsi / contoh</th></tr>
+<tr><td>Twisted Pair (UTP/STP)</td><td>Pasangan kabel tembaga berpilin, murah, jarak ±100 m</td><td>Jaringan LAN, kabel Ethernet (Cat5e/Cat6), telepon</td></tr>
+<tr><td>Coaxial</td><td>Inti tembaga + isolator + pelindung, lebih tahan interferensi</td><td>TV kabel, internet kabel, antena</td></tr>
+<tr><td>Fiber Optic</td><td>Mengirim cahaya, kecepatan sangat tinggi, kebal interferensi listrik</td><td>Backbone internet, antar kota/negara</td></tr></table></div>
+<h4>2. Unguided (nirkabel / udara)</h4>
+<ul><li><b>Radio</b> – jangkauan luas, menembus dinding (FM, Wi-Fi, Bluetooth)</li><li><b>Microwave</b> – butuh line of sight, antar menara</li><li><b>Satelit</b> – jangkauan global (GPS, TV satelit)</li><li><b>Infrared</b> – jarak pendek (remote TV)</li></ul>
+<div class="box">Ingat: guided = lebih stabil & aman; unguided = fleksibel & mobile tapi rawan interferensi.</div>`},
+{t:"Internet, Intranet, Extranet",h:`
+<div class="sc"><table><tr><th></th><th>Internet</th><th>Intranet</th><th>Extranet</th></tr>
+<tr><td>Definisi</td><td>Jaringan global publik yang menghubungkan jutaan jaringan</td><td>Jaringan privat internal satu organisasi</td><td>Intranet yang diperluas untuk pihak luar terpilih</td></tr>
+<tr><td>Akses</td><td>Siapa saja</td><td>Karyawan / anggota internal</td><td>Mitra, pemasok, klien (dengan login)</td></tr>
+<tr><td>Contoh</td><td>Web, e-mail, YouTube</td><td>Portal kampus internal, server file kantor</td><td>Portal pemasok, sistem B2B</td></tr></table></div>
+<h4>Cara kerja</h4>
+<p>Ketiganya memakai protokol <b>TCP/IP</b>. Perangkat punya alamat IP, data dipecah menjadi paket, dikirim lewat router, lalu disusun ulang di tujuan. Bedanya ada pada <b>siapa yang boleh mengakses</b> (dikendalikan firewall, VPN, dan autentikasi).</p>
+<div class="box">Pola ingat: Internet = publik, Intranet = internal, Extranet = internal + tamu terpilih.</div>`},
+{t:"Interface (Antar Muka)",h:`
+<p>Interface adalah titik pertemuan/penghubung antara dua komponen agar bisa berkomunikasi. Penting untuk desain aplikasi lintas platform.</p>
+<ul><li><b>Hardware interface (port)</b> – koneksi fisik. Contoh: USB, RJ-45 (Ethernet), serial RS-232, HDMI.</li>
+<li><b>Software interface (API)</b> – cara program saling bertukar data. Contoh: REST API, socket, driver.</li>
+<li><b>User interface</b> – penghubung manusia dengan sistem. Contoh: GUI (Windows, aplikasi mobile), CLI (terminal), voice/touch.</li></ul>
+<div class="box">Di UTS diminta: uraikan 3 jenis interface + contoh. Jawab dengan pola: jenis → definisi → contoh.</div>`},
+{t:"Bandwidth & Cara Menghitungnya",h:`
+<p>Bandwidth adalah kapasitas maksimum saluran untuk mengirim data. Ada dua pengertian:</p>
+<h4>1. Pada jaringan komputer (digital)</h4>
+<p>Satuan bit per detik (bps, Kbps, Mbps, Gbps).</p>
+<div class="box"><b>Bandwidth = Total data ÷ Waktu</b><br>Contoh UTS: 100 Mb dalam 20 detik → 100 ÷ 20 = <b>5 Mbps</b></div>
+<h4>2. Pada komunikasi analog (frekuensi)</h4>
+<div class="box"><b>Bandwidth = f tertinggi − f terendah</b><br>Contoh UTS: VHF 30–300 MHz → 300 − 30 = <b>270 MHz</b></div>
+<h4>Penting</h4>
+<ul><li>Perhatikan <b>Mb (megabit)</b> vs <b>MB (megabyte)</b>: 1 byte = 8 bit.</li><li>1 Gbps = 1000 Mbps; 1 Mbps = 1000 Kbps.</li></ul>
+<p>Coba di tab <b>Hitung</b>.</p>`},
+{t:"Encoding (Pengkodean Sinyal)",h:`
+<p><b>Encoding</b> adalah proses mengubah data (bit atau informasi) menjadi sinyal yang sesuai untuk dikirim lewat media transmisi. Tujuannya: sinkronisasi, efisiensi bandwidth, dan deteksi kesalahan.</p>
+<h4>Jenis berdasarkan data & sinyal</h4>
+<ul><li>Digital → digital (line coding): NRZ, RZ, Manchester, AMI</li><li>Digital → analog (modulasi): ASK, FSK, PSK</li><li>Analog → digital: PCM (sampling, kuantisasi, coding)</li><li>Analog → analog: AM, FM, PM</li></ul>
+<h4>Perbedaan singkat line coding</h4>
+<ul><li><b>NRZ</b>: 1 dan 0 pakai level tegangan berbeda, sederhana tapi sulit sinkron.</li><li><b>RZ</b>: sinyal kembali ke nol di tengah bit.</li><li><b>Manchester</b>: transisi di tengah tiap bit, sinkronisasi bagus (dipakai Ethernet lama).</li></ul>
+<div class="box">Kisi-kisi: cukup paham pengertian dan tujuan, tidak perlu menggambar bentuk sinyal.</div>`},
+{t:"Circuit Switching & Packet Switching",h:`
+<h4>Circuit switching</h4>
+<p>Membuat jalur khusus end-to-end sebelum data dikirim. Cara kerja: <b>(1) pembentukan sirkuit</b> → <b>(2) transfer data</b> lewat jalur tetap → <b>(3) pemutusan sirkuit</b>. Contoh: telepon PSTN.</p>
+<h4>Packet switching</h4>
+<p>Data dipecah menjadi paket, masing-masing membawa alamat tujuan, dikirim lewat rute bisa berbeda, disusun ulang di tujuan. Contoh: internet.</p>
+<div class="sc"><table><tr><th></th><th>Circuit</th><th>Packet</th></tr>
+<tr><td>Jalur</td><td>Dedicated</td><td>Dibagi bersama</td></tr>
+<tr><td>Setup</td><td>Perlu</td><td>Tidak perlu</td></tr>
+<tr><td>Efisiensi</td><td>Rendah (jalur terpakai walau diam)</td><td>Tinggi</td></tr>
+<tr><td>Delay</td><td>Konstan, rendah setelah setup</td><td>Bervariasi</td></tr>
+<tr><td>Contoh</td><td>Telepon analog</td><td>Internet, VoIP</td></tr></table></div>`},
+{t:"Buffer Overflow",h:`
+<p>Buffer adalah area memori sementara untuk menampung data saat perbedaan kecepatan pengirim dan penerima. <b>Buffer overflow</b> terjadi ketika data yang masuk melebihi kapasitas buffer.</p>
+<h4>Masalah yang timbul</h4>
+<ul><li><b>Packet loss</b> – data berlebih dibuang</li><li><b>Delay / latency</b> dan retransmisi</li><li><b>Congestion</b> (kemacetan jaringan)</li><li><b>Data korup / aplikasi crash</b> karena menimpa memori lain</li><li><b>Celah keamanan</b> – dieksploitasi penyerang untuk menjalankan kode berbahaya</li></ul>
+<h4>Pencegahan</h4>
+<ul><li>Flow control (mis. sliding window)</li><li>Ukuran buffer memadai & validasi input</li><li>Pemeriksaan batas (bounds checking)</li></ul>`},
+{t:"TDM dan FDM (Multiplexing)",h:`
+<p><b>Multiplexing</b> menggabungkan banyak sinyal agar berbagi satu media. Penting untuk VoIP dan live streaming.</p>
+<div class="sc"><table><tr><th></th><th>TDM</th><th>FDM</th></tr>
+<tr><td>Dibagi berdasarkan</td><td>Waktu (time slot)</td><td>Frekuensi (kanal/band)</td></tr>
+<tr><td>Cara</td><td>Tiap sumber bergiliran memakai seluruh kanal</td><td>Tiap sumber memakai pita frekuensi sendiri bersamaan</td></tr>
+<tr><td>Sinyal</td><td>Digital</td><td>Analog</td></tr>
+<tr><td>Contoh</td><td>Telepon digital (T1)</td><td>Radio FM, TV kabel</td></tr>
+<tr><td>Catatan</td><td>Butuh sinkronisasi waktu</td><td>Butuh guard band antar kanal</td></tr></table></div>
+<div class="box">Ingat: TDM = bergiliran, FDM = bersamaan di frekuensi berbeda.</div>`}
+];
+
+const Q=[
+["Media guided yang memakai cahaya untuk mengirim data adalah…",["Twisted pair","Coaxial","Fiber optic","Radio"],2,"Fiber optic mengirim pulsa cahaya sehingga cepat dan kebal interferensi listrik.",1],
+["Contoh media unguided adalah…",["Kabel UTP","Gelombang radio","Kabel koaksial","Fiber optic"],1,"Unguided merambat lewat udara/ruang hampa, misalnya radio, microwave, satelit.",1],
+["Jaringan privat internal organisasi disebut…",["Internet","Intranet","Extranet","WAN publik"],1,"Intranet hanya untuk pengguna internal.",2],
+["Jaringan yang memberi akses terbatas kepada mitra/pemasok adalah…",["Extranet","Intranet","Internet","Hotspot"],0,"Extranet memperluas intranet ke pihak luar terpilih.",2],
+["USB, RJ-45, dan HDMI termasuk interface…",["Software","Hardware (port)","User interface","API"],1,"Itu koneksi fisik/port.",3],
+["REST API merupakan contoh interface…",["Hardware","Software","Fisik","Analog"],1,"API adalah antarmuka antar program.",3],
+["Data 100 Mb terkirim dalam 20 detik. Bandwidth-nya…",["2 Mbps","5 Mbps","20 Mbps","50 Mbps"],1,"100 ÷ 20 = 5 Mbps.",4],
+["Rentang VHF 30–300 MHz memiliki bandwidth…",["30 MHz","270 MHz","300 MHz","330 MHz"],1,"300 − 30 = 270 MHz.",4],
+["Encoding adalah…",["Menggambar sinyal","Mengubah data menjadi sinyal untuk dikirim","Menyimpan data ke buffer","Menggabungkan kanal"],1,"Encoding = pengkodean data/informasi menjadi sinyal.",5],
+["Yang termasuk line coding digital adalah…",["AM","FM","Manchester","FDM"],2,"Manchester adalah line coding; AM/FM modulasi analog.",5],
+["Tahapan circuit switching yang benar…",["Transfer → setup → putus","Setup → transfer → putus","Putus → setup → transfer","Paket → rute → rakit"],1,"Bangun sirkuit, kirim data, lalu putuskan.",6],
+["Data dipecah menjadi paket dan bisa lewat rute berbeda. Ini…",["Circuit switching","Packet switching","TDM","FDM"],1,"Ciri khas packet switching.",6],
+["Buffer overflow terjadi ketika…",["Buffer kosong","Data melebihi kapasitas buffer","Kabel putus","Sinyal lemah"],1,"Data masuk lebih besar dari ruang buffer.",7],
+["Dampak buffer overflow pada jaringan, kecuali…",["Packet loss","Delay","Celah keamanan","Bandwidth otomatis naik"],3,"Bandwidth tidak naik; justru performa turun.",7],
+["Multiplexing yang membagi berdasarkan slot waktu…",["FDM","TDM","AM","PCM"],1,"TDM = Time Division Multiplexing.",8],
+["Radio FM memakai multiplexing…",["TDM","FDM","Circuit","Packet"],1,"Tiap stasiun memakai pita frekuensi berbeda.",8]
+];
+
+const U=[
+["Bagaimanakah cara kerja utama circuit switching dalam komunikasi data di sistem komputer?","15","Circuit switching membuat jalur komunikasi khusus (dedicated) antara pengirim dan penerima sebelum data dikirim. Tahapannya: (1) <b>Circuit establishment</b> – jalur dibangun lewat node-node switch; (2) <b>Data transfer</b> – seluruh data dikirim lewat jalur tetap tersebut dengan bandwidth terjamin dan delay konstan; (3) <b>Circuit disconnect</b> – jalur diputus dan sumber daya dilepas. Kekurangannya: jalur tidak dipakai bersama sehingga kurang efisien. Contoh: telepon PSTN."],
+["Hitunglah bandwidth bila: a) total data 100 Mb dalam waktu 20 detik; b) komunikasi berdasarkan frekuensi, sinyal beroperasi di range VHF (30 sampai 300 MHz).","15","a) Bandwidth = data ÷ waktu = 100 Mb ÷ 20 s = <b>5 Mbps</b>.<br>b) Bandwidth = f tertinggi − f terendah = 300 − 30 = <b>270 MHz</b>."],
+["Apa maksud dari Buffer Overflow? Sebutkan masalah yang timbul akibat adanya Buffer Overflow.","20","Buffer overflow adalah kondisi saat data yang masuk ke buffer (memori sementara) melebihi kapasitasnya. Masalah: packet loss, delay dan retransmisi, congestion, data korup/aplikasi crash, serta celah keamanan yang bisa dieksploitasi untuk menjalankan kode berbahaya."],
+["Gambarkan 2 contoh bentuk media transmisi guided dan jelaskan fungsinya.","20","1) <b>Twisted pair (UTP)</b>: pasangan kabel tembaga berpilin; fungsi menghubungkan perangkat dalam LAN dan telepon, murah dan mudah dipasang.<br>2) <b>Fiber optic</b>: serat kaca yang mengirim cahaya; fungsi backbone jaringan berkecepatan tinggi dan jarak jauh, kebal interferensi.<br>(Alternatif: coaxial untuk TV kabel/internet kabel.) Saat menggambar, beri label bagian: inti, isolator, pelindung."],
+["Uraikan 3 jenis interface dalam komunikasi data beserta contohnya.","20","1) <b>Hardware interface (port)</b>: koneksi fisik, contoh USB, RJ-45, RS-232.<br>2) <b>Software interface (API)</b>: antarmuka antar program, contoh REST API, socket.<br>3) <b>User interface</b>: penghubung manusia-sistem, contoh GUI aplikasi mobile/web dan CLI terminal."],
+["Apakah perbedaan utama antara TDM dan FDM?","10","TDM membagi kanal berdasarkan <b>waktu</b>: tiap sumber bergiliran memakai seluruh kanal dalam time slot (umumnya sinyal digital). FDM membagi berdasarkan <b>frekuensi</b>: tiap sumber memakai pita frekuensi sendiri secara bersamaan (umumnya analog, perlu guard band)."]
+];
+
+/* materi */
+function renderTopics(){
+$("#tl").innerHTML=T.map((x,i)=>`<div class="card" id="c${i}"><button class="th" data-i="${i}"><span class="n">${i+1}</span><b>${x.t}</b><span class="ck">${P.m[i]?OK:""}</span></button><div class="tb">${x.h}<button class="btn done" data-d="${i}">${P.m[i]?"Tandai belum selesai":OK+" Tandai sudah paham"}</button></div></div>`).join("");
+prog()}
+$("#tl").onclick=e=>{
+const d=e.target.closest("[data-d]");
+if(d){const i=d.dataset.d;P.m[i]=!P.m[i];save();const o=$("#c"+i).classList.contains("open");renderTopics();if(o)$("#c"+i).classList.add("open");return}
+const h=e.target.closest(".th");if(h)h.parentNode.classList.toggle("open")};
+function prog(){const a=Object.values(P.m).filter(Boolean).length,b=Object.keys(P.q).length;
+$("#pb").style.width=(a/T.length*100)+"%";$("#pl").textContent=`Materi ${a}/${T.length} paham · Kuis ${b}/${Q.length} dijawab`}
+
+/* kuis */
+let sc=0;
+function renderQuiz(){
+sc=0;P.q={};save();
+$("#qz").innerHTML=Q.map((q,i)=>`<div class="card q" id="q${i}"><div class="meta">Soal ${i+1}/${Q.length} · Topik ${q[4]}</div><h3>${q[0]}</h3>${q[1].map((o,j)=>`<button class="o" data-q="${i}" data-o="${j}">${String.fromCharCode(65+j)}. ${o}</button>`).join("")}<div class="ex" style="display:none"></div></div>`).join("")+`<div class="card big" id="fin" style="display:none"><div class="s" id="fs"></div><p id="fm"></p><button class="btn" id="rs">Ulangi kuis</button></div>`;
+$("#rs").onclick=()=>{renderQuiz();window.scrollTo({top:0})};prog()}
+$("#qz").onclick=e=>{
+const b=e.target.closest(".o");if(!b)return;
+const i=+b.dataset.q,j=+b.dataset.o,card=$("#q"+i);
+if(card.dataset.done)return;card.dataset.done=1;
+const c=Q[i][2];P.q[i]=j==c?1:0;if(j==c)sc++;
+card.querySelectorAll(".o").forEach((x,k)=>{if(k==c)x.classList.add("ok");else if(k==j)x.classList.add("bad")});
+const ex=card.querySelector(".ex");ex.style.display="block";ex.innerHTML=(j==c?OK+" Benar! ":NO+" Kurang tepat. ")+Q[i][3];
+save();prog();
+if(Object.keys(P.q).length==Q.length){const f=$("#fin");f.style.display="block";$("#fs").textContent=Math.round(sc/Q.length*100);$("#fm").textContent=`Benar ${sc} dari ${Q.length}. `+(sc>=13?"Mantap, siap UTS!":sc>=9?"Bagus, ulas topik yang masih salah.":"Pelajari lagi materinya, kamu pasti bisa.")}};
+
+/* hitung */
+function calc(){
+const d=+$("#d").value,u=+$("#du").value,t=+$("#t").value;
+$("#r1").textContent=t>0?`${+(d*u/t).toFixed(3)} Mbps`:"Waktu harus > 0";
+const a=+$("#f1").value,b=+$("#f2").value;$("#r2").textContent=`${+(b-a).toFixed(3)} MHz`}
+["d","du","t","f1","f2"].forEach(id=>$("#"+id).addEventListener("input",calc));calc();
+let cur;
+function newQ(){const t=[10,20,25,40,50][Math.random()*5|0],m=[50,100,200,500,1000][Math.random()*5|0];cur=m/t;
+$("#rq").innerHTML=`Data sebesar <b>${m} Mb</b> dikirim dalam <b>${t} detik</b>. Berapa bandwidth (Mbps)?`;$("#rf").innerHTML="";$("#ra").value=""}
+$("#rn").onclick=newQ;
+$("#rc").onclick=()=>{const v=parseFloat($("#ra").value);if(isNaN(v))return;
+$("#rf").innerHTML=Math.abs(v-cur)<.01?`<div class="ex">${OK} Benar! ${cur} Mbps</div>`:`<div class="ex" style="background:var(--badb)">${NO} Belum tepat. Rumus: data ÷ waktu = ${cur} Mbps</div>`};
+newQ();
+
+/* uts */
+$("#ul").innerHTML=U.map((u,i)=>`<div class="card q"><div class="meta">Soal ${i+1} · Nilai ${u[1]}</div><h3>${u[0]}</h3><textarea rows="3" placeholder="Tulis jawabanmu di sini…"></textarea><div class="row"><button class="btn g" data-a="${i}">Lihat jawaban model</button></div><div class="ex" id="a${i}" style="display:none">${u[2]}</div></div>`).join("");
+$("#ul").onclick=e=>{const b=e.target.closest("[data-a]");if(!b)return;const a=$("#a"+b.dataset.a);const s=a.style.display=="none";a.style.display=s?"block":"none";b.textContent=s?"Sembunyikan jawaban":"Lihat jawaban model"};
+
+/* nav */
+$("#nav").onclick=e=>{const b=e.target.closest("button");if(!b)return;
+document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("on",x==b));
+document.querySelectorAll(".sec").forEach(s=>s.classList.toggle("on",s.id==b.dataset.t));window.scrollTo({top:0})};
+const NI={materi:["Materi","<path d='M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z'/><path d='M4 21V5'/>"],kuis:["Kuis","<path d='M4 20l1-5L16 4l4 4L9 19z'/>"],hitung:["Hitung","<rect x='5' y='3' width='14' height='18' rx='2'/><path d='M8 7.5h8M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01'/>"],uts:["Soal UTS","<path d='M6 3h8l4 4v14H6z'/><path d='M9 12h6M9 16h6'/>"]};
+document.querySelectorAll("nav button").forEach(b=>{const n=NI[b.dataset.t];b.innerHTML=IC(n[1])+"<span>"+n[0]+"</span>"});
+$(".chip").innerHTML=IC("<path d='M13 2L4 14h7l-1 8 9-12h-7z'/>")+" TIM BELAJAR · SIAP UTS";
+renderTopics();renderQuiz();
+/* comic */
+const star=(r1,r2,n)=>{let p=[];for(let i=0;i<n*2;i++){const a=i*Math.PI/n,r=i%2?r2:r1;p.push((100+r*Math.cos(a)).toFixed(1)+","+(100+r*Math.sin(a)).toFixed(1))}return p.join(" ")};
+$("#bp").setAttribute("points",star(98,66,12));
+{const h=document.querySelector("header"),s=document.createElement("div");s.className="stk";s.innerHTML="<svg viewBox='0 0 200 200'><polygon points='"+star(98,70,10)+"' fill='#ffd400' stroke='#1c1b1f' stroke-width='7' stroke-linejoin='round'/></svg><b>UTS!</b>";h.appendChild(s)}
+const W=["POW!","BAM!","ZAP!","BOOM!","WOW!","YES!","WHAM!"];
+document.addEventListener("click",e=>{if(!e.target.closest(".btn,.o,.th,nav button"))return;
+const f=document.createElement("span");f.className="fx";f.textContent=W[Math.random()*W.length|0];f.style.left=e.clientX+"px";f.style.top=e.clientY+"px";f.style.setProperty("--r",((Math.random()*30-15)|0)+"deg");document.body.appendChild(f);setTimeout(()=>f.remove(),800)});
+/* splash */
+{const s=$("#splash"),st=$(".stage");
+for(let i=0;i<14;i++){const b=document.createElement("span");b.className="bit";b.textContent=Math.random()<.5?"0":"1";const side=i%2?1:-1;b.style.cssText="--x:"+side*(90+Math.random()*80)+"px;--y:"+((Math.random()*130-75)|0)+"px;animation-delay:"+(i*.15).toFixed(2)+"s";st.appendChild(b)}
+function reveal(){const w=$(".word"),T="OMAHCODING";w.innerHTML=[...T].map((c,i)=>"<span class='"+(i<4?"c1":"c2")+"'></span>").join("");
+[...w.children].forEach((sp,i)=>{let n=0;setTimeout(()=>{sp.classList.add("on");const id=setInterval(()=>{sp.textContent=Math.random()<.5?"0":"1";if(++n>5){clearInterval(id);sp.textContent=T[i];sp.classList.add("lk")}},60)},300+i*110)})}
+let t0=performance.now(),D=2400,done=false;
+function fin(){if(done)return;done=true;$("#sl").style.width="100%";$("#sp").textContent="100%";$("#lt").textContent="Siap belajar!";s.classList.add("boom");reveal();setTimeout(()=>s.classList.add("bye"),2900);setTimeout(()=>s.remove(),3900)}
+function step(n){if(done)return;const p=Math.min(1,(n-t0)/D),e=1-Math.pow(1-p,2.2);$("#sl").style.width=e*100+"%";$("#sp").textContent=Math.round(e*100)+"%";p<1?requestAnimationFrame(step):fin()}
+requestAnimationFrame(step);
+s.addEventListener("click",()=>{done?s.classList.add("bye"):fin()})}
+</script>
+</body>
+</html>
